@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 
 interface Props {
@@ -9,9 +11,8 @@ const SearchBar: React.FC<Props> = ({ searchText, onSearchChange }) => {
   return (
     <input
       type="text"
-      placeholder="🔍 Tìm kiếm sản phẩm theo tên..."
-      
-      className="border border-gray-300 p-3 text-lg w-full mb-6 rounded-xl focus:ring-indigo-500 focus:border-indigo-500 shadow-sm"
+      placeholder="🔍 Tìm kiếm theo mô tả..."
+      className="search-bar form-input" // Sử dụng class chung 'form-input'
       value={searchText}
       onChange={e => onSearchChange(e.target.value)}
     />

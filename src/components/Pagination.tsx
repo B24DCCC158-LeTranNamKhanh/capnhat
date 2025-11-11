@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 
 interface Props {
@@ -7,31 +9,27 @@ interface Props {
 }
 
 const Pagination: React.FC<Props> = ({ currentPage, totalPages, onPageChange }) => {
+  // Tạo mảng số trang để hiển thị các nút
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
   return (
-    <div className="flex justify-center gap-1 mt-6">
+    <div className="pagination">
       <button
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
-        
-        className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium bg-white hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition duration-150"
+        className="pagination-btn"
       >
-        &larr; Trang trước
+        Trang trước
       </button>
       
-      {/* Page number buttons */}
-      <div className="flex gap-1 mx-2">
-        {Array.from({ length: totalPages }, (_, i) => (
+      <div className="page-numbers">
+        {pageNumbers.map(page => (
           <button
-            key={i}
-           
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition duration-150 
-              ${currentPage === i + 1 
-                ? 'bg-indigo-600 text-white shadow-md' 
-                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
-              }`}
-            onClick={() => onPageChange(i + 1)}
+            key={page}
+            className={`pagination-btn ${currentPage === page ? 'is-active' : ''}`}
+            onClick={() => onPageChange(page)}
           >
-            {i + 1}
+            {page}
           </button>
         ))}
       </div>
@@ -39,10 +37,9 @@ const Pagination: React.FC<Props> = ({ currentPage, totalPages, onPageChange }) 
       <button
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
-        
-        className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium bg-white hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition duration-150"
+        className="pagination-btn"
       >
-        Trang sau &rarr;
+        Trang sau
       </button>
     </div>
   );

@@ -1,0 +1,357 @@
+
+
+
+:root {
+    --primary-color: #4f46e5; 
+    --income-color: #10b981;  
+    --expense-color: #ef4444; 
+    --bg-light: #f9fafb; 
+    --card-bg: #ffffff;
+    --border-color: #e5e7eb;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/* === Layout và Tiêu đề === */
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--primary-color);
+    padding-top: 50px; 
+}
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+/* === Summary Board === */
+.summary-board {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.summary-card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    color: var(--card-bg);
+}
+.summary-card.balance { background-color: var(--primary-color); }
+.summary-card.income { background-color: var(--income-color); }
+.summary-card.expense { background-color: var(--expense-color); }
+
+.summary-label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+.summary-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* === Form và Input chung === */
+.form-expense-tracker {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.form-group-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.form-input, .form-select {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+.error-message {
+    color: var(--expense-color);
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+/* === Buttons === */
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+.btn-submit-expense {
+    background-color: var(--expense-color);
+    color: white;
+}
+.btn-submit-income {
+    background-color: var(--income-color);
+    color: white;
+}
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* === Transaction List & Card === */
+.transaction-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+.transaction-card {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    background-color: var(--card-bg);
+    border-left: 5px solid;
+    transition: transform 0.2s;
+}
+.transaction-card:hover {
+    transform: translateY(-3px);
+}
+.transaction-card.income { border-left-color: var(--income-color); }
+.transaction-card.expense { border-left-color: var(--expense-color); }
+
+.icon-badge {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+.transaction-info {
+    flex-grow: 1;
+}
+.transaction-date {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin: 0;
+}
+.transaction-description {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 3px 0;
+}
+.transaction-category {
+    font-size: 0.85rem;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+.transaction-amount-area {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.transaction-amount {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0;
+}
+.amount-income { color: var(--income-color); }
+.amount-expense { color: var(--expense-color); }
+.btn-delete-small {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 5px;
+    transition: color 0.2s;
+}
+.btn-delete-small:hover {
+    color: var(--expense-color);
+}
+
+.no-data-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    color: var(--text-light);
+}
+
+/* === Pagination === */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+.pagination-btn {
+    padding: 8px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--card-bg);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.pagination-btn:hover:not(.is-active):not(:disabled) {
+    background-color: var(--bg-light);
+}
+.pagination-btn.is-active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    font-weight: 600;
+}
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.page-numbers {
+    display: flex;
+    gap: 5px;
+}
+
+/* === Filter & Search Bar Layout === */
+.filter-search-bar {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Lọc (1 phần) | Tìm kiếm (2 phần) */
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.filter-select-type {
+    width: 100%;
+}
+.search-bar {
+    width: 100%;
+}
+
+/* === Sidebar Menu Control (MỚI) === */
+/* Sidebar Container */
+.sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px; 
+    background-color: var(--card-bg);
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1); 
+    z-index: 100;
+    transform: translateX(-100%); 
+    transition: transform 0.3s ease-in-out;
+    padding-top: 80px; 
+}
+
+/* Nút mở/đóng menu (Hamburger) */
+.menu-toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 101;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: background-color 0.2s;
+}
+
+.menu-toggle-btn:hover {
+    background-color: #3b30a5; 
+}
+
+/* Hiệu ứng: Khi di chuột vào nút, sidebar sẽ hiện ra */
+.menu-toggle-btn:hover + .sidebar-container,
+.sidebar-container:hover {
+    transform: translateX(0); /* Hiện sidebar */
+}
+
+/* Các mục trong Sidebar */
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    padding: 15px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    transition: background-color 0.2s;
+}
+
+.menu-item:hover, .menu-item.active {
+    background-color: var(--bg-light);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Điều chỉnh lại layout chính (một cột đơn giản) */
+.main-content-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.transaction-list-area, .sidebar-form {
+    
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .summary-board {
+        flex-direction: column;
+    }
+    .form-group-container {
+        grid-template-columns: 1fr;
+    }
+    .filter-search-bar {
+        grid-template-columns: 1fr;
+    }
+    .main-title {
+        font-size: 2rem;
+    }
+}
