@@ -1,4 +1,3 @@
-
 import { Transaction } from '../types/Transaction';
 
 export const initialTransactions: Transaction[] = [

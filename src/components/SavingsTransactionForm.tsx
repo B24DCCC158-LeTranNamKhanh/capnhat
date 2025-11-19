@@ -1,5 +1,3 @@
-
-
 import React, { useState, useContext } from 'react';
 import { SavingEntry, SavingType } from '../types/Saving';
 import { Transaction } from '../types/Transaction'; 

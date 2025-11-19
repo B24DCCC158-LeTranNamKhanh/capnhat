@@ -1,4 +1,3 @@
-
 import React, { useState, useContext } from 'react';
 import { Transaction, TransactionCategory, TransactionType } from '../types/Transaction';
 import TransactionContext from '../context/TransactionContext';

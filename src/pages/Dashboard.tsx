@@ -1,4 +1,3 @@
-
 import React, { useContext, useState, useMemo } from 'react';
 import TransactionContext, { TransactionContextType } from '../context/TransactionContext';
 import { Transaction } from '../types/Transaction';
@@ -6,14 +5,17 @@ import TransactionForm from '../components/TransactionForm';
 import TransactionList from '../components/TransactionList';
 import SearchBar from '../components/SearchBar';
 import Pagination from '../components/Pagination';
-import SavingsTransactionForm from '../components/SavingsTransactionForm'; // IMPORT MỚI
-import SavingsSummary from '../components/SavingsSummary'; // IMPORT MỚI
+import SavingsTransactionForm from '../components/SavingsTransactionForm';
+import SavingsSummary from '../components/SavingsSummary';
+import { useTheme } from '../context/ThemeContext'; // <--- 1. IMPORT HOOK THEME
 
 // Định nghĩa các tên Tab/Mục Menu
 type Tab = 'form' | 'list' | 'saving_deposit' | 'saving_list' | 'saving_withdraw'; 
 
 const Dashboard: React.FC = () => {
   const { state } = useContext<TransactionContextType>(TransactionContext); 
+  const { theme, toggleTheme } = useTheme(); // <--- 2. SỬ DỤNG HOOK
+  
   const transactions: Transaction[] = state.transactions;
 
   // State QUẢN LÝ TAB/MỤC HIỂN THỊ
@@ -85,6 +87,14 @@ const Dashboard: React.FC = () => {
             💰 Sổ Tiết Kiệm
           </li>
           
+          {/* ---  NÚT CHUYỂN ĐỔI GIAO DIỆN  --- */}
+          <li 
+            className="menu-item theme-toggle-item" 
+            onClick={toggleTheme}
+          >
+            {theme === 'light' ? '🌙 Chế độ Tối' : '☀️ Chế độ Sáng'}
+          </li>
+
           {/* GỬI TIẾT KIỆM MỚI  */}
           <li 
             className={`menu-item ${activeTab === 'saving_deposit' ? 'active' : ''}`} 

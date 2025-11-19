@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { Transaction } from '../types/Transaction';
 import TransactionCard from './TransactionCard';

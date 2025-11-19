@@ -1,5 +1,3 @@
-
-
 import React, { useContext } from 'react';
 import { Transaction } from '../types/Transaction';
 import TransactionContext, { TransactionContextType } from '../context/TransactionContext';

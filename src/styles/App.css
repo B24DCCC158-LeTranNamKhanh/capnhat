@@ -1,6 +1,3 @@
-
-
-
 :root {
     --primary-color: #4f46e5; 
     --income-color: #10b981;  
@@ -12,7 +9,39 @@
     --text-light: #6b7280;
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
+[data-theme="dark"] {
+    --primary-color: #818cf8; /* Màu tím sáng hơn cho nền tối */
+    --income-color: #34d399;  /* Xanh lá sáng hơn */
+    --expense-color: #f87171; /* Đỏ sáng hơn */
+    
+    --bg-light: #111827;      /* Nền trang (Rất tối) */
+    --card-bg: #1f2937;       /* Nền thẻ (Tối vừa) */
+    --border-color: #374151;  /* Viền (Xám tối) */
+    
+    --text-dark: #f3f4f6;     /* Chữ chính (Trắng xám) */
+    --text-light: #9ca3af;    /* Chữ phụ (Xám nhạt) */
+    
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+}
 
+.theme-toggle-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    margin: 10px 20px; /* Canh lề cho đẹp trong sidebar */
+    transition: all 0.3s;
+}
+.theme-toggle-btn:hover {
+    background-color: var(--bg-light);
+    border-color: var(--primary-color);
+}
 body {
     margin: 0;
     padding: 0;
@@ -354,4 +383,25 @@ body {
     .main-title {
         font-size: 2rem;
     }
+}
+/* Định nghĩa màu sắc cho Dark Mode */
+[data-theme="dark"] {
+    --primary-color: #818cf8; 
+    --income-color: #34d399;  
+    --expense-color: #f87171; 
+    
+    --bg-light: #111827;     
+    --card-bg: #1f2937;       
+    --border-color: #374151; 
+    
+    --text-dark: #f3f4f6;     
+    --text-light: #9ca3af;   
+    
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5); 
+}
+
+/* Style cho nút chuyển đổi theme */
+.theme-toggle-item {
+    margin-top: auto; 
+    border-top: 1px solid var(--border-color);
 }
