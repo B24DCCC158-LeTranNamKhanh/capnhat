@@ -7,21 +7,29 @@ import SearchBar from '../components/SearchBar';
 import Pagination from '../components/Pagination';
 import SavingsTransactionForm from '../components/SavingsTransactionForm';
 import SavingsSummary from '../components/SavingsSummary';
-import { useTheme } from '../context/ThemeContext'; // <--- 1. IMPORT HOOK THEME
+import { useTheme } from '../context/ThemeContext';
+import { useNavigate } from 'react-router-dom';
 
 // Định nghĩa các tên Tab/Mục Menu
 type Tab = 'form' | 'list' | 'saving_deposit' | 'saving_list' | 'saving_withdraw'; 
 
 const Dashboard: React.FC = () => {
   const { state } = useContext<TransactionContextType>(TransactionContext); 
-  const { theme, toggleTheme } = useTheme(); // <--- 2. SỬ DỤNG HOOK
+  const { theme, toggleTheme } = useTheme(); 
   
   const transactions: Transaction[] = state.transactions;
+
+  // --- LẤY THÔNG TIN NGƯỜI DÙNG TỪ LOCAL STORAGE ---
+ 
+  const user = JSON.parse(localStorage.getItem('user') || 'null');
+  const userName = user?.username || "Người dùng"; 
+  const firstLetter = userName.charAt(0).toUpperCase();
+  // ----------------------------------------------------
 
   // State QUẢN LÝ TAB/MỤC HIỂN THỊ
   const [activeTab, setActiveTab] = useState<Tab>('list'); 
 
-  // ... (giữ nguyên state lọc, tìm kiếm, phân trang) ...
+  // ... (logic tính toán summary, filter, pagination giữ nguyên) ...
 
   const summary = useMemo(() => {
     const totalIncome = transactions
@@ -58,13 +66,24 @@ const Dashboard: React.FC = () => {
   return (
     <div className="app-container">
       
-      {/* NÚT 3 sọc  */}
+      {/* --- KHỐI NÚT ĐIỀU KHIỂN GÓC TRÁI --- */}
       <button className="menu-toggle-btn">
         ☰
       </button>
 
       {/* CÁC MỤC BÊN TRONG */}
       <div className="sidebar-container">
+        
+        {/* --- KHU VỰC AVATAR VÀ LỜI CHÀO (MỚI) --- */}
+        <div className="profile-info">
+            <div className="profile-avatar">{firstLetter}</div>
+            <div className="profile-greeting">
+                Chào mừng,
+                <span className="user-name">{userName} 👋</span>
+            </div>
+        </div>
+        {/* ---------------------------------------- */}
+        
         <ul className="sidebar-menu">
           <li 
             className={`menu-item ${activeTab === 'list' ? 'active' : ''}`}
@@ -87,14 +106,6 @@ const Dashboard: React.FC = () => {
             💰 Sổ Tiết Kiệm
           </li>
           
-          {/* ---  NÚT CHUYỂN ĐỔI GIAO DIỆN  --- */}
-          <li 
-            className="menu-item theme-toggle-item" 
-            onClick={toggleTheme}
-          >
-            {theme === 'light' ? '🌙 Chế độ Tối' : '☀️ Chế độ Sáng'}
-          </li>
-
           {/* GỬI TIẾT KIỆM MỚI  */}
           <li 
             className={`menu-item ${activeTab === 'saving_deposit' ? 'active' : ''}`} 
@@ -103,6 +114,23 @@ const Dashboard: React.FC = () => {
             ➕ Gửi Tiết Kiệm
           </li>
 
+          {/* --- NÚT CHUYỂN ĐỔI GIAO DIỆN --- */}
+          <li 
+            className="menu-item theme-toggle-item" 
+            onClick={toggleTheme}
+            style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fbbf24' : '#4f46e5' }}
+          >
+            {theme === 'light' ? '🌙 Chế độ Tối' : '☀️ Chế độ Sáng'}
+          </li>
+
+          {/* --- NÚT BÁO CÁO LỖI --- */}
+          <li 
+            className="menu-item report-bug" 
+            onClick={() => alert("Cảm ơn bạn! Hãy gửi chi tiết lỗi về email: support@expense.vn")}
+          >
+            🐛 Báo Cáo Lỗi
+          </li>
+          
         </ul>
       </div>
 

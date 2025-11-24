@@ -405,3 +405,51 @@ body {
     margin-top: auto; 
     border-top: 1px solid var(--border-color);
 }
+
+/* Khu vực chào mừng và Avatar */
+.profile-info {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 12px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--card-bg); /* Đảm bảo nền khớp với sidebar */
+}
+
+/* Ảnh đại diện */
+.profile-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* Lời chào */
+.profile-greeting {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+}
+
+.profile-greeting .user-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+/* nút Báo cáo lỗi */
+.menu-item.report-bug {
+    font-weight: 600;
+    border-top: 1px solid var(--border-color);
+    color: #f87171; 
+}
+.menu-item.report-bug:hover {
+    background-color: #fef2f2;
+    color: #dc2626;
+}
